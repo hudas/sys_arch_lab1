@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+
+    <servlet>
+        <servlet-name>LabaratoryServlet</servlet-name>
+        <servlet-class>com.hudas.LabaratoryServlet</servlet-class>
+
+        <!-- Default reiksme - pakuria servleta kai pareina pirmas requestas -->
+        <!-- Skaicius nurodo tvarka kuria bus pakurtas servletas -->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>LabaratoryServlet</servlet-name>
+        <url-pattern>*.html</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- Konteksto parametrai kuriuos galima išsitraukt servlet'e -->
+    <context-param>
+        <param-name>Name</param-name>
+        <param-value>Value</param-value>
+    </context-param>
+
+    <welcome-file-list>
+        <!-- If first one not found second one is checked -->
+        <welcome-file>welcome.html</welcome-file>
+        <welcome-file>random.html</welcome-file>
+
+        <!-- Default value, if no others are present always fall back to index -->
+        <!--<welcome-file>index.html</welcome-file>-->
+    </welcome-file-list>
+
+    
+</web-app>
