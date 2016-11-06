@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+<web-app version="3.1"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
 
     <servlet>
-        <servlet-name>LabaratoryServlet</servlet-name>
-        <servlet-class>com.hudas.LabaratoryServlet</servlet-class>
+        <servlet-name>MyServlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
 
         <!-- Default reiksme - pakuria servleta kai pareina pirmas requestas -->
         <!-- Skaicius nurodo tvarka kuria bus pakurtas servletas -->
         <load-on-startup>1</load-on-startup>
     </servlet>
-    
+
     <servlet-mapping>
-        <servlet-name>LabaratoryServlet</servlet-name>
-        <url-pattern>*.html</url-pattern>
+        <servlet-name>MyServlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
+
+
 
 
     <!-- Konteksto parametrai kuriuos galima išsitraukt servlet'e -->
@@ -24,12 +30,23 @@
 
     <welcome-file-list>
         <!-- If first one not found second one is checked -->
-        <welcome-file>welcome.html</welcome-file>
-        <welcome-file>random.html</welcome-file>
+        <welcome-file>/welcome.xhtml</welcome-file>
 
         <!-- Default value, if no others are present always fall back to index -->
         <!--<welcome-file>index.html</welcome-file>-->
     </welcome-file-list>
+
+
+    <!--  Mapping Errors to Specific Pages  -->
+    <error-page>
+        <location>/error-pages/bad_request.xhtml</location>
+        <error-code>400</error-code>
+    </error-page>
+
+    <error-page>
+        <location>/error-pages/resource_not_found.xhtml</location>
+        <error-code>404</error-code>
+    </error-page>
 
     
 </web-app>

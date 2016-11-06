@@ -6,12 +6,22 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+
     <h:head>
-        <title>Laboratory classes</title>
+        <title>TelCo</title>
     </h:head>
 
     <h:body>
+        <h2>Telekomunikacijų verslo valdymo sistema</h2>
 
+        <div>
+            <h3>Paslaugų pajungimas</h3>
+            <h:link id="start_sale" value="Pajungimas" outcome="/sale/sale"/>
+        </div>
 
+        <div>
+            <h3>Gedimo valdymas</h3>
+            <h:link id="start_maint" value="Gedimas" outcome="/maintenance/maintenance"/>
+        </div>
     </h:body>
 </html>
