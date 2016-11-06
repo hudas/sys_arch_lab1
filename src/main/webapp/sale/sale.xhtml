@@ -11,7 +11,20 @@
     <h:body>
         <h:outputText value="#{sale.message}"></h:outputText>
 
-        <h:commandButton value="click" action="#{sale.createClient()}"/>
+        <h:form>
+            <h:commandButton value="click" action="#{sale.createClient()}"/>
+        </h:form>
 
+        <h:form>
+            <h:commandButton value="click" action="#{sale.activateBilling()}"/>
+        </h:form>
+
+        <h:form>
+            <h:commandButton value="click" action="#{sale.issueEquipment()}"/>
+        </h:form>
+
+        <h:form>
+            <h:commandButton value="click" action="#{sale.activeServices()}"/>
+        </h:form>
     </h:body>
 </html>
