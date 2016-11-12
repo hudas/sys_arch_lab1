@@ -48,5 +48,12 @@
         <location>/error-pages/resource_not_found.xhtml</location>
     </error-page>
 
-    
+    <data-source>
+        <name>java:global/telcoDatasource</name>
+        <class-name>org.h2.jdbcx.JdbcDataSource</class-name>
+        <url>jdbc:h2:~/h2database/telcoDB;AUTO_SERVER=TRUE;INIT=RUNSCRIPT FROM 'classpath:h2database/createdb.sql'</url>
+        <user>a</user>
+        <password>a</password>
+    </data-source>
+
 </web-app>

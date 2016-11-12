@@ -1,8 +1,6 @@
 package com.hudas.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Ignas on 2016-11-06.
@@ -12,6 +10,8 @@ import javax.persistence.Id;
 public class Equipment {
 
     @Id
+    @SequenceGenerator(name="equipment_generator", sequenceName="equipment_sequence", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="equipment_generator")
     private long id;
 
     @Column

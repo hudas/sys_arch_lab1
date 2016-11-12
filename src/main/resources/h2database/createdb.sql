@@ -1,0 +1,30 @@
+CREATE TABLE IF NOT EXISTS client
+(
+	id INTEGER NOT NULL IDENTITY,
+	name             VARCHAR(50),
+
+	PRIMARY KEY (ID)
+);
+
+CREATE SEQUENCE IF NOT EXISTS client_sequence;
+
+CREATE TABLE IF NOT EXISTS service
+(
+	id INTEGER NOT NULL IDENTITY,
+	price            BIGINT,
+	client_id				 BIGINT REFERENCES client(id),
+
+	PRIMARY KEY (id)
+);
+
+CREATE SEQUENCE IF NOT EXISTS service_sequence;
+
+CREATE TABLE IF NOT EXISTS equipment
+(
+	id INTEGER NOT NULL IDENTITY,
+	model			       VARCHAR(20),
+
+	PRIMARY KEY (id),
+);
+
+CREATE SEQUENCE IF NOT EXISTS equipment_sequence;

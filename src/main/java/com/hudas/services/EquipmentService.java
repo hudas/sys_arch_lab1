@@ -1,12 +1,12 @@
 package com.hudas.services;
 
-import javax.ejb.Stateless;
-import java.io.Serializable;
+import com.hudas.entities.Equipment;
 
 /**
- * Created by Ignas on 2016-11-06.
+ * Created by Ignas on 2016-11-12.
  */
+public interface EquipmentService {
 
-@Stateless
-public class EquipmentService implements Serializable {
+    public void issueEquipment(Equipment equipment);
+
 }
