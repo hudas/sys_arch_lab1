@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 
 @Stateless
-public class EquipmentServiceImpl implements Serializable {
+public class EquipmentServiceImpl implements Serializable, EquipmentService {
 
     @PersistenceContext
     private EntityManager em;

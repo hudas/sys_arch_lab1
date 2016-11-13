@@ -6,9 +6,16 @@ import com.hudas.entities.Equipment;
 import com.hudas.entities.Service;
 import com.hudas.services.*;
 
+import javax.annotation.Resource;
+import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
+import javax.persistence.SynchronizationType;
+import javax.transaction.TransactionSynchronizationRegistry;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.concurrent.ExecutionException;
@@ -25,11 +32,16 @@ public class SaleController implements Serializable {
     private String message = "Conversation scope controller!";
 
 
-
     // Hack for demonstration - Entities should be filled by user forms.
     private Client client = new Client("Test");
     private Service service = new Service(new BigDecimal(5));
     private Equipment equipment = new Equipment();
+
+    @PersistenceContext(type = PersistenceContextType.EXTENDED, synchronization = SynchronizationType.SYNCHRONIZED)
+    private EntityManager em;
+
+    @Inject
+    private Conversation conversation;
 
     // @EJB Moka injectinti tik EJB kaskart sukuria nauja bean, tuo tarpu Inject - pilnas CDI injectinimas ir jis pirma ieško bean contexte
     @Inject
@@ -42,15 +54,25 @@ public class SaleController implements Serializable {
     private ClientService clientService;
 
     @Inject
-    private EquipmentServiceImpl equipmentService;
+    private EquipmentService equipmentService;
+
+    @Resource
+    private TransactionSynchronizationRegistry tx;
 
     public void createClient() {
+        conversation.begin();
         System.out.println("CONVERSATION: Creating client!");
+        System.out.println("CONVERSATION: em:!" + em.toString());
+
         clientService.createClient(client);
     }
 
     public void activateBilling() {
         System.out.println("CONVERSATION: Activating Billing!");
+        System.out.println("CONVERSATION: em:!" + em.toString());
+
+        System.out.println("Billing Service: " + tx.toString());
+
 
         // Lets imagine that after submit request we get price from user filled form.
         billingService.activateBills(client, service);
@@ -74,6 +96,7 @@ public class SaleController implements Serializable {
         } catch (ExecutionException e) {
             // Some stuff
         }
+        conversation.end();
     }
 
 

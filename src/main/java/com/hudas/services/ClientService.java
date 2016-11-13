@@ -22,6 +22,7 @@ public class ClientService implements Serializable {
     @Audit
     public void createClient(Client client) {
         System.out.println("CLIENT SERVICE: creating client!");
+        System.out.println("CLIENT SERVICE: em:!" + em.toString());
         em.persist(client);
         // Would contain all business logic considering client creation.
     }

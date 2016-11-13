@@ -13,11 +13,11 @@ import javax.interceptor.InvocationContext;
 public class AuditInterceptor {
 
     @AroundInvoke
-    public void audit(InvocationContext context) throws Exception {
+    public Object audit(InvocationContext context) throws Exception {
 
         // Audits which method was invoked at which time etc.
 
-        context.proceed();
+        return context.proceed();
     }
 
 
